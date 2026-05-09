@@ -21,11 +21,18 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "string.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+//
+//Send data to UART
+//
+void UART_SEND(UART_HandleTypeDef *huart, char buffer[]){
+	HAL_UART_Transmit(huart, (uint8_t*) buffer, strlen(buffer), HAL_MAX_DELAY);
+}
+
 
 /* USER CODE END PTD */
 
@@ -95,6 +102,10 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+//  UART_SEND(&huart2, "Hello World! Nucleo-L476RG  ");
+  char Text2Display[]="Hello World! Nucleo-L476RG \n\r";
+  HAL_UART_Transmit(&huart2, (uint8_t*) Text2Display, strlen(Text2Display), HAL_MAX_DELAY);
   while (1)
   {
     /* USER CODE END WHILE */
